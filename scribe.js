@@ -46,7 +46,7 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(config.port, config.hostname, () => {
-    console.log(`Server running at http://${config.hostname}:${config.port}/`);
+    console.log(`Scribe server running at http://${config.hostname}:${config.port}/`);
 });
 
 function makeFile() {
@@ -103,8 +103,9 @@ function writeFile(msg) {
         minute: "2-digit",
         second: "2-digit",
     });
-    const payload = `\n[${timestamp}] ${msg.sender}: ${msg.message}`;
-    fs.appendFileSync(path.join(__dirname, "log", filename), payload, {
+    const payload = `[${timestamp}] ${msg.sender}: ${msg.message}`;
+    console.log(payload)
+    fs.appendFileSync(path.join(__dirname, "logs", filename), '\n' + payload, {
         encoding: "utf8",
     });
 
