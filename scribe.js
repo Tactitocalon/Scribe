@@ -5,6 +5,7 @@ const winutils = require('node-native-win-utils')
 const jimp = require("jimp");
 
 var config = require('./config');
+var app_version = 1;
 
 const filename = "log_" + getFilenameTimestamp() + ".txt";
 let chatMessageCounter = config.screenshotFrequency;
@@ -46,7 +47,10 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(config.port, config.hostname, () => {
+    console.log(`------------------------------------------------`);
+    console.log(`Scribe release ${app_version}`);
     console.log(`Scribe server running at http://${config.hostname}:${config.port}/`);
+    console.log(`------------------------------------------------`);
 });
 
 function makeFile() {
